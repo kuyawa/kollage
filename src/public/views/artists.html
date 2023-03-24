@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<%- include('tmp-head.html') %>
+<link rel="stylesheet" href="/styles/profile.css">
+</head>
+<body>
+<%- include('tmp-header.html') %>
+<section class="main wrap">
+  <!-- ARTISTS -->
+  <div class="list">
+    <h1 class="title">ARTISTS</h1>
+    <% if(list.length>0) { %>
+      <div class="items">
+        <% list.forEach(function(item){ %>
+          <div class="artist" key="<%=item.recid%>">
+            <a href="/profile/<%=item.namex%>">
+              <img class="artistImage" src="/avatars/<%=item.avatar%>" width="240px" height="240px" alt="<%=item.name%>" />
+            </a>
+            <div class="artistInfo">
+              <label class="artistName"><%=item.name%></label>
+              <label class="artistDesc"><%=item.tagline%></label>
+              <label class="artistDate">Since <%=utils.dateShort(item.created)%></label>
+            </div>
+          </div>
+        <% }) %>
+        <% if(list.length<2) { %><div class="artist blank">&nbsp;</div><% } %>
+        <% if(list.length<3) { %><div class="artist blank">&nbsp;</div><% } %>
+        <% if(list.length<4) { %><div class="artist blank">&nbsp;</div><% } %>
+      </div>
+      <% if(list.length==100) { %>
+        <div id="viewMore" class="viewMore"><a href="/artists?page=<%=session.page+1%>">LOAD MORE</a></div>
+      <% } %>
+    <% } else { %>
+      <div class="items">
+        <h3 class="secondary">No Artists</h3>
+      </div>
+    <% } %>
+  </div>
+</section>
+<%- include('tmp-footer.html') %>
+</body>
+</html>

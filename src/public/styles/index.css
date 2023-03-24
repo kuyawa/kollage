@@ -1,0 +1,30 @@
+.intro   { display: flex; flex-direction: row; justify-content: space-between; }
+.info    { width: 50%; text-align: left; }
+.hero    { width: 50%; }
+.heroImg { width: 100%; border-radius: 100px 0 100px 0; }
+
+.main { margin-top: 100px; }
+.mainTitle { margin-top: 150px; margin-bottom: 0; text-align: left; font-size: 3em; font-weight: bold; }
+.mainSubtitle { margin-top: 0; text-align: left; font-size: 1.5em; color: var(--color-secondary); }
+.mainText { text-align: left; font-size: 1.5em; }
+.mainNote { text-align: left; font-size: 0.9em; color: var(--color-secondary); }
+
+
+.action { display: inline-block; margin: 50px 0; padding: 10px 40px; border: 1px solid #286; border-radius: 50px; background-color: #4a8; color: #fff; text-decoration: none !important; cursor: pointer; }
+.second { display: inline-block; margin: 50px 0 0 20px; padding: 10px 40px; border: 1px solid #286; border-radius: 50px; background-color: transparent; color: var(--color-primary); text-decoration: none !important; cursor: pointer; }
+.action:hover { color: #fff; background-color: #286; }
+.second:hover { color: #fff; background-color: var(--back-secondary); }
+
+.list { margin-top: 100px; }
+
+@media screen and (max-width: 720px) {
+  .main { box-sizing: border-box; padding: 20px; }
+  .intro { flex-direction: column-reverse; }
+  .info { width: 100%; text-align: center; }
+  .hero { width: 100%; }
+  .mainTitle { text-align: center; }
+  .mainSubtitle { text-align: center; }
+  .mainText { text-align: center; }
+  .mainNote { text-align: center; }
+  .title { text-align: center; }
+}

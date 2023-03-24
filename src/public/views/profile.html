@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<%- include('tmp-head.html') %>
+<link rel="stylesheet" href="/styles/profile.css">
+</head>
+<body>
+<%- include('tmp-header.html') %>
+<section class="profile wrap">
+  <div class="profileBox">
+    <h1 class="profileTitle">PROFILE</h1>
+    <div class="avatarBox">
+      <div class="avatarImage">
+        <img id="avatar-image" class="avatarPic" src="/avatars/<%=user.avatar||'noavatar.jpg'%>" width="250px" height="250px" alt="Avatar" onerror="onImageError(event)" />
+        <input type="file" name="avatar-file" id="avatar-file" class="formFile" onchange="onImagePreview(event)" />
+      </div>
+      <div class="avatarInfo">
+        <input class="formWider userName" type="text" id="name" value="<%=user.name%>" placeholder="User name" />
+        <input class="formWider userDesc" type="text" id="desc" value="<%=user.tagline%>" placeholder="Description" />
+        <input class="formWider userMail" type="text" id="mail" value="<%=user.email%>" placeholder="Email" />
+        <label class="avatarLabel">Member since <%=utils.dateLong(user.created)%></label>
+        <br />
+        <button class="linkButton" onclick="onSave()" id="actionButton">SAVE</button>
+        <button class="linkButton" onclick="logout()">LOGOUT</button>
+        <div id="message" class="message">Edit and save your profile</div>
+      </div>
+    </div>
+  </div>
+  <!-- COLLECTIONS --> 
+  <div class="listBox">
+    <h1 class="titleTask">COLLECTIONS <a href="/collection/new" class="linkTask">CREATE</a></h1>
+    <div class="items">
+      <% if(cols.length<1) { %>
+        <h3 class="secondary">No collections</h3>
+      <% } else { %>
+        <% cols.forEach(function(item){ %>
+          <div class="collection" key="<%=item.recid%>">
+            <a href="/collection/<%=item.taxon%>">
+              <img class="collImage" src="/artworks/<%=item.image%>" width="240px" height="240px" alt="<%=item.name%>" />
+            </a>
+            <div class="collInfo">
+              <label class="collName"><%=item.name%></label>
+              <label class="collDesc"><%=item.desc%></label>
+            </div>
+          </div>
+        <% }) %>
+      <% } %>
+    </div>
+  </div>
+  <!-- ARTWORKS -->
+  <div class="listBox">
+    <h1 class="titleTask">NFTS MINTED <a href="/mint" class="linkTask">CREATE</a></h1>
+    <div class="items">
+      <% if(arts.length<1) { %>
+        <h3 class="secondary">No artworks</h3>
+      <% } else { %>
+        <% arts.forEach(function(item){ %>
+          <%- include('item.html', {item, utils}) %>
+        <% }) %>
+      <% } %>
+    </div>
+  </div>
+  <!-- NFTS ACQUIRED -->
+  <div class="listBox">
+    <h1 class="titleTask">NFTS ACQUIRED</h1>
+    <div class="items">
+      <% if(nfts.length<1) { %>
+        <h3 class="secondary">No artworks</h3>
+      <% } else { %>
+        <% nfts.forEach(function(item){ %>
+          <%- include('item.html', {item, utils}) %>
+        <% }) %>
+      <% } %>
+    </div>
+  </div>
+</section>
+<%- include('tmp-footer.html') %>
+<script src="/scripts/profile.js"></script>
+</body>
+</html>

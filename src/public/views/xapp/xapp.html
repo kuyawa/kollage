@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<%- include('tmp-xhead.html') %>
+</head>
+<body class="xapp">
+<%- include('tmp-xheader.html') %>
+<section class="main">
+  <div class="xappArea">
+    <a href="/xapp/collections" class="xappButton">COLLECTIONS</a>
+    <a href="/xapp/market" class="xappButton">NFTS</a>
+    <a href="/xapp/artists" class="xappButton">ARTISTS</a>
+  </div>
+</section>
+<%- include('tmp-xfooter.html') %>
+<script>
+var xumm = new Xumm(session.xummkey)
+xumm.on("ready", () => console.log("Xumm is ready"))
+xumm.user.account.then(account => {
+  //document.getElementById('account').innerText = account
+  localStorage.setItem('account', account)
+})
+</script>
+</body>
+</html>

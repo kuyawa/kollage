@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<%- include('tmp-head.html') %>
+<link rel="stylesheet" href="/styles/collection.css">
+</head>
+<body>
+<%- include('tmp-header.html') %>
+<section class="main wrap">
+  <input type="hidden" name="collectionid" value="<%=collection.recid%>">
+  <h1 class="mainTitle">COLLECTION</h1>
+  <div class="formBox">
+    <div class="artwork">
+      <img id="artwork-image" class="formPic" src="/artworks/<%=collection.image%>" width="250px" height="250px" />
+    </div>
+    <div class="formInfo">
+      <li class="formList">
+        <label class="formValue textBig"><%=collection.name%></label>
+        <label class="formValue textMed">by <a href="/profile/<%=collection.author.toLowerCase()%>"><%=collection.author%></a></label>
+      </li>
+      <li class="formList">
+        <label class="formValue"><%=collection.description%></label>
+      </li>
+    </div>
+  </div>
+  <!-- ARTWORKS -->
+  <div class="listBox">
+    <h1 class="mainTitle">NFTS</h1>
+    <% if(artworks.length<1) { %>
+      <div class="center">
+        <h3 class="center">No artworks minted yet</h3>
+        <% if(session.userid==collection.userid) { %>
+          <br/>
+          <a href="/mint" class="actionButton">MINT</a>
+        <% } %>
+      </div>
+    <% } else { %>
+      <div class="items">
+        <% artworks.forEach(function(item){ %>
+          <%- include('item.html', {item, utils}) %>
+        <% }) %>
+      </div>
+    <% } %>
+  </div>
+</section>
+<%- include('tmp-footer.html') %>
+</body>
+</html>

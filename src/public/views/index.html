@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<%- include('tmp-head.html') %>
+<link rel="stylesheet" href="/styles/index.css">
+</head>
+<body data-theme="dark">
+<%- include('tmp-header.html') %>
+<section class="main wrap">
+  <div class="intro">
+    <div class="info">
+      <h1 class="mainTitle">NFT Marketplace</h1>
+      <h2 class="mainSubtitle">For XRP Ledger</h2>
+      <div class="actions">
+        <a href="/mint" class="action">MINT NOW</a>
+        <a href="/market" class="second">BUY NFTS</a>
+      </div>
+      <h3 class="mainText">Mint all NFTs you want, free and unlimited!</h3>
+      <h4 class="mainNote">All you need is XUMM wallet and lots of creativity</h4>
+    </div>
+    <div class="hero">
+      <img class="heroImg" src="/media/hero-nfts.jpg">
+    </div>
+  </div>
+
+  <!-- COlLECTIONS -->
+  <div class="list">
+    <h1 class="title">FEATURED COLLECTIONS</h1>
+    <% if(cols.length>0) { %>
+      <div class="flexrow">
+        <% cols.forEach(function(item){ %>
+          <div class="collection" key="<%=item.recid%>">
+            <a href="/collection/<%=item.taxon%>">
+              <img class="collImage" src="/artworks/<%=item.image%>" width="240px" height="240px" alt="<%=item.name%>" />
+            </a>
+            <div class="collInfo">
+              <label class="collName"><%=item.name%></label>
+              <label class="collDesc"><%=item.description%></label>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+      <div class="viewAll"><a href="/collections">VIEW ALL &raquo;</a></div>
+    <% } else { %>
+      <div class="items">
+        <h3 class="secondary">No Collections</h3>
+      </div>
+    <% } %>
+  </div>
+
+  <!-- ARTWORKS -->
+  <div class="list">
+    <h1 class="title">RECENTLY MINTED NFTS</h1>
+    <% if(nfts.length>0) { %>
+      <div class="flexrow">
+        <% nfts.forEach(function(item){ %>
+          <%- include('item.html', {item, utils}) %>
+        <% }) %>
+      </div>
+      <div class="viewAll"><a href="/market">VIEW ALL &raquo;</a></div>
+    <% } else { %>
+    <div class="items">
+      <h3 class="secondary">No NFTs</h3>
+    </div>
+    <% } %>
+  </div>
+
+  <!-- ARTISTS -->
+  <div class="list">
+    <h1 class="title">NEW ARTISTS</h1>
+    <% if(arts.length>0) { %>
+      <div class="flexrow">
+        <% arts.forEach(function(item){ %>
+          <div class="artist" key="<%=item.recid%>">
+            <a href="/profile/<%=item.namex%>">
+              <img class="artistImage" src="/avatars/<%=item.avatar%>" width="240px" height="240px" alt="<%=item.name%>" />
+            </a>
+            <div class="artistInfo">
+              <label class="artistName"><%=item.name%></label>
+              <label class="artistDesc"><%=item.tagline%></label>
+              <label class="artistDate">Since <%=utils.dateShort(item.created)%></label>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+      <div class="viewAll"><a href="/artists">VIEW ALL &raquo;</a></div>
+    <% } else { %>
+      <div class="items">
+        <h3 class="secondary">No Artists</h3>
+      </div>
+    <% } %>
+  </div>
+
+</section>
+<%- include('tmp-footer.html') %>
+</body>
+</html>

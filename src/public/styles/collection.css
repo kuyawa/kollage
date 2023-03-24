@@ -1,0 +1,7 @@
+.collection {  }
+.formBox { display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 50px 0; }
+.formInfo { width: 500px; margin: 0; text-align: center; }
+.formPic { width: 250px; height: 250px; }
+.artwork { width: 250px; height: 250px; margin: 0; }
+.textBig { font-size: 2em; }
+.textMed { font-size: 1em; color: var(--color-secondary); }

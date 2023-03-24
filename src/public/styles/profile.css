@@ -1,0 +1,22 @@
+/* PROFILE */
+
+.profile      { margin: 0 auto; padding: 50px 0; box-sizing: border-box; }
+.profileBox   { box-sizing: border-box; padding: 40px 70px; border: 1px solid var(--border-primary); border-radius: 8px; background-color: var(--back-secondary); }
+.profileTitle { font-size: 2em; text-align: center; }
+.avatarBox    { display: flex; justify-content: flex-start; align-items: flex-start; margin-bottom: 50px; }
+.avatarImage  { position:  relative; width: 250px; height: 250px; }
+.avatarPic    { width: 250px; height: 250px; border-radius: 8px; }
+.avatarInfo   { margin-left: 40px; }
+.avatarLabel  { display: block; margin-bottom: 20px; color: var(--color-secondary); }
+.baseLabel    { display: block; }
+.userName     { font-size: 2em; margin-bottom: 0; }
+.userDesc     {  }
+.userMail     { margin-bottom: 20px; }
+
+
+@media screen and (max-width: 720px) {
+  .title      { text-align: center; }
+  .profile    { width: 100%; text-align: center; }
+  .avatarBox  { flex-direction: column; justify-content: center; align-items: center; align-content: center; }
+  .avatarInfo { margin-left: 0; text-align: center; }
+}

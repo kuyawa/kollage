@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<%- include('tmp-head.html') %>
+<link rel="stylesheet" href="/styles/profile.css">
+</head>
+<body>
+<%- include('tmp-header.html') %>
+<section class="profile wrap">
+  <div class="profileBox">
+    <h1 class="profileTitle">PROFILE</h1>
+    <div class="avatarBox">
+      <div class="avatarImage">
+        <img id="avatar-image" class="avatarPic" src="/avatars/<%=user.avatar||'noavatar.jpg'%>" width="250px" height="250px" alt="Avatar" />
+      </div>
+      <div class="avatarInfo">
+        <h2 class="userName"><%=user.name%></h2>
+        <label><%=user.tagline%></label>
+        <label class="avatarLabel">Member since <%=utils.dateLong(user.created)%></label>
+        <label class="baseLabel"><%=cols.length%> Collections created</label>
+        <label class="baseLabel"><%=arts.length%> NFTs minted</label>
+        <label class="baseLabel"><%=nfts.length%> NFTs acquired</label>
+        <label class="baseLabel"><%=sold.length%> NFTs sold</label>
+        <label class="baseLabel"><%=total||0%> XRPs in total sales</label>
+      </div>
+    </div>
+  </div>
+  <!-- COLLECTIONS -->
+  <div class="listBox">
+    <h1 class="titleTask">COLLECTIONS</h1>
+    <div class="items">
+      <% if(cols.length<1) { %>
+        <h3 class="secondary">No collections</h3>
+      <% } else { %>
+        <% cols.forEach(function(item){ %>
+          <div class="collection" key="<%=item.recid%>">
+            <a href="/collection/<%=item.taxon%>">
+              <img class="collImage" src="/artworks/<%=item.image%>" width="240px" height="240px" alt="<%=item.name%>" />
+            </a>
+            <div class="collInfo">
+              <label class="collName"><%=item.name%></label>
+              <label class="collDesc"><%=item.desc%></label>
+            </div>
+          </div>
+        <% }) %>
+      <% } %>
+    </div>
+  </div>
+  <!-- ARTWORKS -->
+  <div class="listBox">
+    <h1 class="titleTask">NFTS MINTED</h1>
+    <div class="items">
+      <% if(arts.length<1) { %>
+        <h3 class="secondary">No artworks</h3>
+      <% } else { %>
+        <% arts.forEach(function(item){ %>
+          <%- include('item.html', {item, utils}) %>
+        <% }) %>
+      <% } %>
+    </div>
+  </div>
+  <!-- NFTS ACQUIRED -->
+  <div class="listBox">
+    <h1 class="titleTask">NFTS ACQUIRED</h1>
+    <div class="items">
+      <% if(nfts.length<1) { %>
+        <h3 class="secondary">No artworks</h3>
+      <% } else { %>
+        <% nfts.forEach(function(item){ %>
+          <%- include('item.html', {item, utils}) %>
+        <% }) %>
+      <% } %>
+    </div>
+  </div>
+</section>
+<%- include('tmp-footer.html') %>
+</body>
+</html>

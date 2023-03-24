@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<%- include('tmp-head.html') %>
+<link rel="stylesheet" href="/styles/mint.css">
+</head>
+<body>
+<%- include('tmp-header.html') %>
+<section class="main wrap">
+  <h1 class="mainTitle">MINT NFT</h1>
+  <div class="formBox">
+    <div class="artwork">
+      <img id="artwork-image" class="formPic" src="/artworks/nftnew.jpg" width="500px" height="500px" onerror="onImageError(event)" />
+      <input type="file" name="artwork-file" id="artwork-file" class="formFile" onchange="onImagePreview(event)" />
+    </div>
+    <div class="formInfo">
+      <li class="formList">
+        <label class="formLabel">Collection</label>
+        <select id="collection" class="formSelect">
+          <% cols.forEach(function(item){ %>
+            <option value="<%=item.recid%>" key="<%=item.taxon%>"><%=item.name%></option>
+          <% }) %>
+        </select>
+        <a class="linkTask" href="/collection/new">NEW</a>
+      </li>
+      <li class="formList">
+        <label class="formLabel">NFT Name</label>
+        <input class="formWider" type="text" id="name" placeholder="NFT name" />
+      </li>
+      <li class="formList">
+        <label class="formLabel">Description</label>
+        <input class="formWider" type="text" id="desc" placeholder="Description" />
+      </li>
+      <li class="formList">
+        <label class="formLabel">Price</label>
+        <input class="formInput" type="text" id="price" placeholder="Sale Price" value="1" /> XRP
+      </li>
+      <li class="formList">
+        <label class="formLabel">Copies</label>
+        <input class="formInput" type="text" id="copies" placeholder="0 for unlimited" value="1" />
+      </li>
+      <li class="formList">
+        <label class="formLabel">Tags</label>
+        <input class="formWider" type="text" id="tags" placeholder="Tags separated by space" />
+      </li>
+    </div>
+  </div>
+  <button id="actionButton" class="actionButton" onclick="onMint()">MINT NFT</button>
+  <div id="message" class="message">One wallet confirmation will be needed</div>
+</section>
+<%- include('tmp-footer.html') %>
+<script src="/scripts/mint.js"></script>
+</body>
+</html>

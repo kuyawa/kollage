@@ -1,0 +1,12 @@
+.mint {  }
+
+.listOffers { width: 100%; max-width: 100%; }
+.offerTokenId { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+@media screen and (max-width: 720px) {
+  .listOffers { font-size: 0.9em }
+  .listOffers th:nth-child(2) { display: none; }
+  .listOffers th:nth-child(6) { display: none; }
+  .listOffers td:nth-child(2) { display: none; }
+  .listOffers td:nth-child(6) { display: none; }
+}

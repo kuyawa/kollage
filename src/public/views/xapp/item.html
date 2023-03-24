@@ -1,0 +1,16 @@
+<%
+  let rarity = utils.rarity(item.copies)
+  let copies = `${(item.copies||1000)-item.sold}/${item.copies||1000}`
+%>
+<div class="item" key="<%=item.tokenid%>">
+  <div class="itemTop">
+    <a href="/xapp/nft/<%=item.tokenid%>">
+      <img class="itemImage" src="/artworks/<%=item.image%>" width="240px" height="240px" alt="<%=item.name%>" />
+    </a>
+  </div>
+  <div class="itemInfo">
+    <li class="itemLine"><label class="itemName"><%=item.name%></label></li>
+    <li class="itemLine"><label class="itemAuthor">by <a href="/xapp/profile/<%=item.author?.toLowerCase()%>"><%=item.author%></a></label></li>
+    <li class="itemLine"><label class="itemPrice"><%=item.price%> <small>XRP</small></label> <label class="itemRare"><%=rarity%><br><small class="itemSmall"><%=copies%></small></label></li>
+  </div>
+</div>

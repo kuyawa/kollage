@@ -1,0 +1,14 @@
+  <header>
+    <div class="topBar">
+      <div class="topLeft">
+        <a href="/"><img class="mainLogo" src="/media/logo-dark.svg"></a>
+      </div>
+      <div class="topRight">
+        <img id="topAvatar" class="topAvatar" src="/avatars/<%=session.avatar||'noavatar.jpg'%>">
+        <a class="menuLink" id="connect" href="<%=session.userid?'/profile':'/login'%>"><%=session.username||'Connect'%></a>
+        <a class="menuLink" href="/mint">Mint</a>
+        <a class="menuLink" href="/market">Trade</a>
+        <a class="menuLink" noref onclick="javascript:app.utils.changeTheme(event)"><img class="iconTheme" src="/media/theme-dark.png" width="20px"></a>
+      </div>
+    </div>
+  </header>

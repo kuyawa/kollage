@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<%- include('tmp-head.html') %>
+<link rel="stylesheet" href="/styles/market.css">
+</head>
+<body>
+<%- include('tmp-header.html') %>
+<section class="main wrap">
+  <h1 class="mainTitle">MARKETPLACE</h1>
+  <div class="searchBox">
+    <div class="searchBar">
+      <input id="searchText" class="searchText" type="text" name="search" id="search" placeholder="Search by nft id, name, author or tags" value="<%=session.query%>" onkeydown="onEnter(event)">
+      <button id="searchButton" class="searchButton" onclick="app.search()"><img class="iconSearch" src="/media/icon-search-dark.svg"></button>
+    </div>
+  </div>
+  <!-- ARTWORKS -->
+  <div class="listBox">
+    <% if(nfts.length<1) { %>
+      <div class="center">
+        <h3 class="center">No artworks minted yet</h3>
+        <% if(session.userid) { %>
+          <br/>
+          <a href="/mint" class="actionButton">MINT</a>
+        <% } %>
+      </div>
+    <% } else { %>
+      <div class="items">
+        <% nfts.forEach(function(item){ %>
+          <%- include('item.html', {item, utils}) %>
+        <% }) %>
+      </div>
+    <% } %>
+  </div>
+</section>
+<%- include('tmp-footer.html') %>
+<script>
+function onEnter(evt){
+  //console.log(evt)
+  if(evt.which==13){
+    app.search()
+  }
+}
+</script>
+</body>
+</html>

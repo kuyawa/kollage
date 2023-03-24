@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<%- include('tmp-head.html') %>
+<link rel="stylesheet" href="/styles/profile.css">
+</head>
+<body>
+<%- include('tmp-header.html') %>
+<section class="main wrap">
+  <!-- COLLECTIONS -->
+  <div class="list">
+    <h1 class="title">COLLECTIONS</h1>
+    <% if(list.length>0) { %>
+      <div class="items">
+        <% list.forEach(function(item){ %>
+          <div class="collection" key="<%=item.recid%>">
+            <a href="/collection/<%=item.taxon%>">
+              <img class="collImage" src="/artworks/<%=item.image%>" width="240px" height="240px" alt="<%=item.name%>" />
+            </a>
+            <div class="collInfo">
+              <label class="collName"><%=item.name%></label>
+              <label class="collDesc"><%=item.desc%></label>
+            </div>
+          </div>
+        <% }) %>
+        <% if(list.length<2) { %><div class="artist blank">&nbsp;</div><% } %>
+        <% if(list.length<3) { %><div class="artist blank">&nbsp;</div><% } %>
+        <% if(list.length<4) { %><div class="artist blank">&nbsp;</div><% } %>
+      </div>
+      <% if(list.length==100) { %>
+        <div id="viewMore" class="viewMore"><a href="/collections?page=<%=session.page+1%>">LOAD MORE</a></div>
+      <% } %>
+    <% } else { %>
+      <div class="items">
+        <h3 class="secondary">No collections</h3>
+      </div>
+    <% } %>
+  </div>
+</section>
+<%- include('tmp-footer.html') %>
+</body>
+</html>

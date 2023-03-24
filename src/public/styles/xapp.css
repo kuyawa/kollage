@@ -1,0 +1,7 @@
+.xapp { }
+.xapp .topBar{ justify-content: center; }
+.xapp .topRight{ display: none; }
+.xappArea { display: flex; flex-direction: column; justify-content: center; align-items: center; margin-top: 20px; }
+.xappButton { width: 200px; margin: 10px auto; padding: 10px 20px; background-color: #4a8; color: #fff; border: 1px solid #4a8; border-radius: 40px; text-decoration: none; }
+.xappButton:hover { color: #fff; }
+.xapp .title { text-align: center; }

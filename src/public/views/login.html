@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<%- include('tmp-head.html') %>
+<link rel="stylesheet" type="text/css" href="/styles/login.css">
+</head>
+<body>
+<%- include('tmp-header.html') %>
+<section class="main">
+  <div class="action">
+    <img class="wallet-image" src="/media/xumm.png" width="300px">
+    <h1>CONNECT YOUR WALLET</h1>
+    <h2>You need to connect your XUMM wallet before minting NFTs</h2>
+    <div class="actions">
+      <button id="action" class="actionButton" onclick="onConnect()">CONNECT</button>
+    </div>
+    <div id="message" class="message">You must scan a qrcode with your wallet and accept the request</div>
+    <button id="logout" class="miniButton" onclick="onLogout()">LOGOUT</button>
+  </div>
+  <div class="wallet">
+    <img class="xummLogo" src="/media/xumm-logo.jpg">
+    <h1 class="walletTitle">We use <b>XUMM</b> as our preferred crypto wallet</h1>
+    <p>In order to mint NFTs you will need to install <a id="getWallet" href="https://xumm.app" target="_blank">XUMM wallet</a> in your mobile phone and have some XRP funds as all transactions will be stored in XRPL Ledger</p>
+    <p class="walletStores">
+      <a href="https://play.google.com/store/apps/details?id=com.xrpllabs.xumm" target="_blank"><img class="getWallet" src="/media/getandroid.png"></a> 
+      <a href="https://apps.apple.com/us/app/xumm/id1492302343" target="_blank"><img class="getWallet" src="/media/getapple.png"></a>
+    </p>
+    <p>Once installed, create your account and add some funds to start minting</p>
+  </div>
+</section>
+<script src="/scripts/login.js"></script>
+<%- include('tmp-footer.html') %>
+</body>
+</html>

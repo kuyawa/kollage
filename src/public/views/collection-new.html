@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<%- include('tmp-head.html') %>
+<link rel="stylesheet" href="/styles/mint.css">
+</head>
+<body>
+<%- include('tmp-header.html') %>
+<section class="main wrap">
+  <h1 class="mainTitle">NEW COLLECTION</h1>
+  <div class="formBox">
+    <div class="artwork">
+      <img id="artwork-image" class="formPic" src="/artworks/nftnew.jpg" width="500px" height="500px" onerror="onImageError(event)" />
+      <input type="file" name="artwork-file" id="artwork-file" class="formFile" onchange="onImagePreview(event)" />
+    </div>
+    <div class="formInfo">
+      <li class="formList">
+        <label class="formLabel">Name</label>
+        <input class="formWider" type="text" id="name"  placeholder="Collection name" />
+      </li>
+      <li class="formList">
+        <label class="formLabel">Description</label>
+        <input class="formWider" type="text" id="desc"  placeholder="Description" />
+      </li>
+    </div>
+  </div>
+  <button id="actionButton" class="actionButton" onclick="onSave()">SAVE</button>
+  <div id="message" class="message">Enter collection info and save</div>
+</section>
+<%- include('tmp-footer.html') %>
+<script src="/scripts/collection.js"></script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<%- include('tmp-head.html') %>
+<link rel="stylesheet" href="/styles/mint.css">
+</head>
+<body>
+<%- include('tmp-header.html') %>
+<section class="main wrap">
+  <h1 class="mainTitle">NFT</h1>
+  <input type="hidden" id="tokenId" value="<%=nft.tokenid%>">
+  <div class="formBox">
+    <div class="artwork">
+      <img id="artwork-image" class="formPic" src="/artworks/<%=nft.image%>" />
+      <h5 class="monoFont"><a href="<%=session.explorer%>/nft/<%=nft.tokenid%>" target="_blank"><%=nft.tokenid%></a></h5>
+      <h5 class="monoFont">Created on <%=utils.dateTime(nft.created)%></h5>
+      <h5 class="monoFont"><a href="<%=session.gateway%>/<%=nft.artwork.split(':')[1]%>" target="_blank">View permanent image</a></h5>
+    </div>
+    <div class="formInfo">
+      <li class="formList">
+        <label class="formLabel"><%=nft.original?'Author':'Owner'%></label>
+        <input class="formWider" disabled type="text" id="author" value="<%=nft.author%>" />
+      </li>
+      <li class="formList">
+        <label class="formLabel">Collection</label>
+        <input class="formWider" disabled type="text" id="collection" value="<%=nft.collection%>" />
+      </li>
+      <li class="formList">
+        <label class="formLabel">NFT Name</label>
+        <input class="formWider" disabled type="text" id="name" value="<%=nft.name%>" />
+      </li>
+      <li class="formList">
+        <label class="formLabel">Description</label>
+        <input class="formWider" disabled type="text" id="desc" value="<%=nft.description%>" />
+      </li>
+      <li class="formList">
+        <label class="formLabel">Price</label>
+        <input class="formInput" disabled type="text" id="price" value="<%=nft.price%>" /> XRP
+      </li>
+      <li class="formList">
+        <label class="formLabel">Copies</label>
+        <input class="formInput" disabled type="text" id="copies" value="<%=nft.copies||'Unlimited'%>" />
+      </li>
+      <li class="formList">
+        <label class="formLabel">Tags</label>
+        <input class="formWider" disabled type="text" id="tags" value="<%=nft.tags%>" />
+      </li>
+    </div>
+  </div>
+  <% if(session.userid==nft.userid) { %>
+    <% if(nft.original) { %>
+      <button id="actionButton disabled" class="actionButton" disabled>BUY</button>
+    <% } else { %>
+      <li class="formList">
+        <input class="formInput center" type="text" id="sellPrice" value="" placeholder="Sell price" /> XRP
+      </li>
+      <button id="actionButton" class="actionButton" onclick="onSell()">SELL NFT</button>
+    <% } %>
+  <% } else { %>
+    <button id="actionButton" class="actionButton" onclick="onBuy()">BUY NFT</button>
+  <% } %>
+  <div id="message" class="message">One wallet confirmation will be needed</div>
+</section>
+<section class="offers wrap">
+  <!-- OFFERS -->
+  <h1 class="title">OFFERS</h1>
+  <div class="tabs">
+    <div id="tab0" class="tab active" onclick="selectPage(event, 'page0')">SELL</div>
+    <div id="tab1" class="tab" onclick="selectPage(event, 'page1')">BUY</div>
+  </div>
+  <div class="pages">
+    <div id="page0" class="page">
+      <% if(offersSell.length>0) { %>
+        <table class="listOffers">
+          <tr><th>Date</th><th>Token Id</th><th>Seller</th><th>Buyer</th><th>Price</th><th>Status</th></tr>
+          <% offersSell.forEach(function(item){ %>
+            <tr class="offer <%=utils.offerStatus(item.status,item.type)%>" key="<%=item.recid%>">
+              <td class="offerDate"><%=utils.dateBase(item.created)%></td>
+              <td class="offerTokenId"><a href="/nft/<%=item.tokenid%>"><%=item.tokenid%></a></td>
+              <td class="offerSeller"><%=item.seller%></td>
+              <td class="offerBuyer"><%=item.buyer%></td>
+              <td class="offerPrice"><%=item.price%> XRP</td>
+              <td class="offerStatus"><%=utils.offerStatus(item.status,item.type)%></td>
+            </tr>
+          <% }) %>
+        </table>
+      <% } else { %>
+        <table class="listOffers">
+          <tr class="offer"><td>No sell offers</td></tr>
+        </table>
+      <% } %>
+    </div>
+    <div id="page1" class="page hidden">
+      <% if(offersBuy.length>0) { %>
+        <table class="listOffers">
+          <tr><th>Date</th><th>Token Id</th><th>Seller</th><th>Buyer</th><th>Price</th><th>Status</th></tr>
+          <% offersBuy.forEach(function(item){ %>
+            <tr class="offer <%=utils.offerStatus(item.status,item.type)%>" key="<%=item.recid%>">
+              <td class="offerDate"><%=utils.dateBase(item.created)%></td>
+              <td class="offerTokenId"><a href="/nft/<%=item.tokenid%>"><%=item.tokenid%></a></td>
+              <td class="offerSeller"><%=item.seller%></td>
+              <td class="offerBuyer"><%=item.buyer%></td>
+              <td class="offerPrice"><%=item.price%> XRP</td>
+              <td class="offerStatus"><%=utils.offerStatus(item.status,item.type)%></td>
+            </tr>
+          <% }) %>
+        </table>
+      <% } else { %>
+        <table class="listOffers">
+          <tr class="offer"><td>No buy offers</td></tr>
+        </table>
+      <% } %>
+    </div>
+  </div>
+</section>
+<%- include('tmp-footer.html') %>
+<script>
+var nft = <%-JSON.stringify(nft,null,2)%>
+</script>
+<script src="/scripts/nft.js"></script>
+</body>
+</html>
